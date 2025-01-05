@@ -23,6 +23,6 @@ Using your device's camera or photos from your library, you can select any color
 
 ## Acknowledgements
 
-Special thanks to [Mixbox](https://github.com/scrtwpns/mixbox) for providing the bases for color mixing algorithms used in this project.
+Special thanks to [Mixbox](https://github.com/scrtwpns/mixbox) for providing the basis for the color mixing algorithms used in this project.
 
 And to [Zsolt M. Kovacs-Vajna](https://zsolt-kovacs.unibs.it/home) for his decade of research in color mixing algorithms.
