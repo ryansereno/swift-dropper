@@ -1,0 +1,47 @@
+# macOS
+.DS_Store
+
+# Xcode
+*.xcuserdatad
+*.xcscmblueprint
+*.xccheckout
+*.xcscmblueprint
+
+# Swift Packages
+Packages/
+.swiftpm/
+.build/
+
+# Xcode-specific build
+DerivedData/
+build/
+*.xcworkspace/xcuserdata/
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+Carthage/Checkouts/
+
+# SwiftUI previews
+*.xcpreviews/
+*.xcpreview/
+
+# Playground
+timeline.xctimeline
+playground.xcworkspace
+
+# User-specific state
+*.xcuserstate
+
+# Provisioning/signing
+*.mobileprovision
+*.cer
+*.p12
+
+# Other
+*.xccovreport
+*.xccovarchive
+
