@@ -35,8 +35,11 @@ public class PaintMixerWrapper {
         guard let mixResults = results else {
             return []
         }
-        
-        // Convert PaintMixResult objects to PaintMix structs
+ //       for result in mixResults {
+ //              print("Paint Name:", result.paintName)
+//                          print("Ratio:", result.ratio)
+//           }// Convert PaintMixResult objects to PaintMix structs
+//        print("===")
         return mixResults.map { result in
             PaintMix(
                 paintName: result.paintName as String,

@@ -30,6 +30,8 @@
 - (NSArray<PaintMixResult *> *)getPaintMixForColor:(uint8_t)r g:(uint8_t)g b:(uint8_t)b {
     std::vector<MixingRatio> result = _mixer->rgbToPaintMix(r, g, b);
     
+    //printf("C++ returned %lu mixing ratios\n", result.size());
+    
     NSMutableArray<PaintMixResult *> *mixResults = [NSMutableArray array];
     
     for (const auto& ratio : result) {
