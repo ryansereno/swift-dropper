@@ -1,7 +1,7 @@
 <h1 align="center">Dropper- Real-World Photoshop Eyedropper Tool</h1>
 
 <div align="center">
-  <img src="./images/dropper.png" width="200" height="200" />
+  <img src="./images/dropper.png" width="200" width="500" />
 </div>
 
 Dropper is an iOS app that helps artists match real-world colors with oil paint mixing ratios.
