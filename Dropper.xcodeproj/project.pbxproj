@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9468E2432D2A35BC00044FA9 /* PaintMixer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9468E2422D2A35BC00044FA9 /* PaintMixer.cpp */; };
+		9468E2452D2A36C500044FA9 /* PaintMixerBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9468E2442D2A36C500044FA9 /* PaintMixerBridge.mm */; };
 		94CF1C682D2A0659008C9070 /* DropperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CF1C672D2A0659008C9070 /* DropperApp.swift */; };
 		94CF1C6A2D2A0659008C9070 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CF1C692D2A0659008C9070 /* ContentView.swift */; };
 		94CF1C6C2D2A065A008C9070 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94CF1C6B2D2A065A008C9070 /* Assets.xcassets */; };
@@ -14,6 +16,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9468E2402D2A350100044FA9 /* PaintMixer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PaintMixer.hpp; sourceTree = "<group>"; };
+		9468E2412D2A35BB00044FA9 /* PaintMixerBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaintMixerBridge.h; sourceTree = "<group>"; };
+		9468E2422D2A35BC00044FA9 /* PaintMixer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PaintMixer.cpp; sourceTree = "<group>"; };
+		9468E2442D2A36C500044FA9 /* PaintMixerBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PaintMixerBridge.mm; sourceTree = "<group>"; };
+		9468E2462D2AA25600044FA9 /* Dropper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dropper-Bridging-Header.h"; sourceTree = "<group>"; };
 		94CF1C642D2A0659008C9070 /* Dropper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dropper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94CF1C672D2A0659008C9070 /* DropperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropperApp.swift; sourceTree = "<group>"; };
 		94CF1C692D2A0659008C9070 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +39,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9468E23F2D2A34C500044FA9 /* PaintMixer */ = {
+			isa = PBXGroup;
+			children = (
+				9468E2402D2A350100044FA9 /* PaintMixer.hpp */,
+				9468E2422D2A35BC00044FA9 /* PaintMixer.cpp */,
+				9468E2412D2A35BB00044FA9 /* PaintMixerBridge.h */,
+				9468E2442D2A36C500044FA9 /* PaintMixerBridge.mm */,
+			);
+			path = PaintMixer;
+			sourceTree = "<group>";
+		};
 		94CF1C5B2D2A0659008C9070 = {
 			isa = PBXGroup;
 			children = (
@@ -51,10 +69,12 @@
 		94CF1C662D2A0659008C9070 /* Dropper */ = {
 			isa = PBXGroup;
 			children = (
+				9468E23F2D2A34C500044FA9 /* PaintMixer */,
 				94CF1C672D2A0659008C9070 /* DropperApp.swift */,
 				94CF1C692D2A0659008C9070 /* ContentView.swift */,
 				94CF1C6B2D2A065A008C9070 /* Assets.xcassets */,
 				94CF1C6D2D2A065A008C9070 /* Preview Content */,
+				9468E2462D2AA25600044FA9 /* Dropper-Bridging-Header.h */,
 			);
 			path = Dropper;
 			sourceTree = "<group>";
@@ -99,6 +119,7 @@
 				TargetAttributes = {
 					94CF1C632D2A0659008C9070 = {
 						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 					};
 				};
 			};
@@ -139,6 +160,8 @@
 			files = (
 				94CF1C6A2D2A0659008C9070 /* ContentView.swift in Sources */,
 				94CF1C682D2A0659008C9070 /* DropperApp.swift in Sources */,
+				9468E2432D2A35BC00044FA9 /* PaintMixer.cpp in Sources */,
+				9468E2452D2A36C500044FA9 /* PaintMixerBridge.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +292,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Dropper/Preview Content\"";
@@ -287,6 +311,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ryan.Dropper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Dropper/Dropper-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -297,6 +323,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Dropper/Preview Content\"";
@@ -315,6 +342,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ryan.Dropper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Dropper/Dropper-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
