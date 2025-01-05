@@ -1,4 +1,4 @@
-<h1 align="center">Dropper- Real-World Photoshop Eyedropper Tool</h1>
+<h1 align="center">Dropper- A real-world Photoshop eyedropper tool</h1>
 
 <div align="center">
   <img src="./images/dropper.png" width="500" />
