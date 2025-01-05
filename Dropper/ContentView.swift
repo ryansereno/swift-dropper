@@ -1,11 +1,3 @@
-//
-//  ContentView.swift
-//  Dropper
-//
-//  Created by Ryan on 1/4/25.
-//
-
-
 import SwiftUI
 import PhotosUI
 
@@ -14,46 +6,45 @@ struct ContentView: View {
     @State private var isImagePickerShown = false
     
     var body: some View {
-        
         NavigationStack {
-                   ZStack {
-                       
-                       VStack(spacing: 20) {
-                           if let image = selectedImage {
-                               ZoomableImageView(image: image)
-                                   .frame(maxWidth: .infinity, maxHeight: .infinity)
-                           } else {
-                               Text("No image selected")
-                                   .foregroundColor(.gray)
-                               Button("Select Image") {
-                                   isImagePickerShown = true
-                               }
-                               .padding()
-                               .background(.blue)
-                               .foregroundColor(.white)
-                               .cornerRadius(10)
-                           }
-                       }
-                   }
-                   .toolbar {
-                       // Show menu only when an image is selected
-                       if selectedImage != nil {
-                           Menu {
-                               Button(role: .destructive) {
-                                   selectedImage = nil
-                               } label: {
-                                   Label("Remove Photo", systemImage: "trash")
-                               }
-                           } label: {
-                               Label("Options", systemImage: "ellipsis.circle")
-                           }
-                       }
-                   }
-                   .sheet(isPresented: $isImagePickerShown) {
-                       ImagePicker(selectedImage: $selectedImage)
-                   }
-               }
-           }}
+            ZStack {
+                VStack(spacing: 20) {
+                    if let image = selectedImage {
+                        ZoomableImageView(image: image)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    } else {
+                        Text("No image selected")
+                            .foregroundColor(.gray)
+                        Button("Select Image") {
+                            isImagePickerShown = true
+                        }
+                        .padding()
+                        .background(.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                    }
+                }
+            }
+            .toolbar {
+                // Show menu only when an image is selected
+                if selectedImage != nil {
+                    Menu {
+                        Button(role: .destructive) {
+                            selectedImage = nil
+                        } label: {
+                            Label("Remove Photo", systemImage: "trash")
+                        }
+                    } label: {
+                        Label("Options", systemImage: "ellipsis.circle")
+                    }
+                }
+            }
+            .sheet(isPresented: $isImagePickerShown) {
+                ImagePicker(selectedImage: $selectedImage)
+            }
+        }
+    }
+}
 
 struct ColorBubble: View {
     let color: Color
@@ -77,58 +68,79 @@ struct ZoomableImageView: View {
     @State private var currentColor: Color = .clear
     @State private var touchLocation: CGPoint = .zero
     @State private var isColorPickerActive = false
+    @State private var paintMixer = PaintMixerWrapper()
+    @State private var currentMix: [PaintMix] = []
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                // Center the image, maintain aspect ratio
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .scaleEffect(scale)
-                    // Gesture to pick color
-                    .gesture(
-                        DragGesture(minimumDistance: 0)
-                            .onChanged { value in
-                                touchLocation = value.location
-                                updateColor(at: value.location, in: geometry)
-                                isColorPickerActive = true
+        VStack {
+            GeometryReader { geometry in
+                ZStack {
+                    // Center the image, maintain aspect ratio
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .scaleEffect(scale)
+                        // Gesture to pick color
+                        .gesture(
+                            DragGesture(minimumDistance: 0)
+                                .onChanged { value in
+                                    touchLocation = value.location
+                                    updateColor(at: value.location, in: geometry)
+                                    isColorPickerActive = true
+                                }
+                                .onEnded { _ in
+                                    isColorPickerActive = false
+                                }
+                        )
+                        // Double tap to zoom
+                        .onTapGesture(count: 2) {
+                            withAnimation {
+                                scale = scale > 1 ? 1 : 2
                             }
-                            .onEnded { _ in
-                                isColorPickerActive = false
-                            }
-                    )
-                    // Double tap to zoom
-                    .onTapGesture(count: 2) {
-                        withAnimation {
-                            scale = scale > 1 ? 1 : 2
                         }
+                    
+                    // Show color bubble if active
+                    if isColorPickerActive {
+                        ColorBubble(color: currentColor)
+                            .position(touchLocation)
+                            .offset(y: -60)
                     }
-                
-                // Show color bubble if active
-                if isColorPickerActive {
-                    ColorBubble(color: currentColor)
-                        // position at finger, offset a bit upwards
-                        .position(touchLocation)
-                        .offset(y: -60)
                 }
             }
+            
+            // Display paint mixing ratios
+            VStack(alignment: .leading, spacing: 8) {
+                if !currentMix.isEmpty {
+                    Text("Paint Mixing Ratios:")
+                        .font(.headline)
+                        .padding(.top)
+                    
+                    ForEach(currentMix, id: \.paintName) { mix in
+                        HStack {
+                            Text(mix.paintName)
+                            Spacer()
+                            Text("\(Int(mix.ratio * 100))%")
+                        }
+                        .padding(.horizontal)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .background(Color.white.opacity(0.9))
+            .padding()
         }
     }
     
     private func updateColor(at point: CGPoint, in geometry: GeometryProxy) {
         // The displayed image's size (preserving aspect ratio)
         let displayedWidth = geometry.size.width
-        // figure out displayed height based on the image's native aspect ratio
         let nativeAspectRatio = image.size.height / image.size.width
         let displayedHeight = displayedWidth * nativeAspectRatio
         
-        // center it in the GeometryReader if there's extra vertical space
         let xOffset = (geometry.size.width - displayedWidth) / 2
         let yOffset = (geometry.size.height - displayedHeight) / 2
         
-        // get relative (0..1) coords inside the displayed area
         let relativeX = (point.x - xOffset) / displayedWidth
         let relativeY = (point.y - yOffset) / displayedHeight
         
@@ -137,6 +149,7 @@ struct ZoomableImageView: View {
             let pixelY = relativeY * CGFloat(image.cgImage!.height)
             if let uiColor = image.pixelColor(at: CGPoint(x: pixelX, y: pixelY)) {
                 currentColor = Color(uiColor)
+                currentMix = paintMixer.getMixForColor(uiColor)
             }
         }
     }
@@ -210,7 +223,6 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
     }
 }
-
 #Preview {
     ContentView()
 }

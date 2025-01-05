@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9468E2432D2A35BC00044FA9 /* PaintMixer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9468E2422D2A35BC00044FA9 /* PaintMixer.cpp */; };
 		9468E2452D2A36C500044FA9 /* PaintMixerBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9468E2442D2A36C500044FA9 /* PaintMixerBridge.mm */; };
+		9468E2482D2AA6A500044FA9 /* PaintMixerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9468E2472D2AA6A500044FA9 /* PaintMixerWrapper.swift */; };
 		94CF1C682D2A0659008C9070 /* DropperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CF1C672D2A0659008C9070 /* DropperApp.swift */; };
 		94CF1C6A2D2A0659008C9070 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CF1C692D2A0659008C9070 /* ContentView.swift */; };
 		94CF1C6C2D2A065A008C9070 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94CF1C6B2D2A065A008C9070 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 		9468E2422D2A35BC00044FA9 /* PaintMixer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PaintMixer.cpp; sourceTree = "<group>"; };
 		9468E2442D2A36C500044FA9 /* PaintMixerBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PaintMixerBridge.mm; sourceTree = "<group>"; };
 		9468E2462D2AA25600044FA9 /* Dropper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dropper-Bridging-Header.h"; sourceTree = "<group>"; };
+		9468E2472D2AA6A500044FA9 /* PaintMixerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintMixerWrapper.swift; sourceTree = "<group>"; };
 		94CF1C642D2A0659008C9070 /* Dropper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dropper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94CF1C672D2A0659008C9070 /* DropperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropperApp.swift; sourceTree = "<group>"; };
 		94CF1C692D2A0659008C9070 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 				9468E2422D2A35BC00044FA9 /* PaintMixer.cpp */,
 				9468E2412D2A35BB00044FA9 /* PaintMixerBridge.h */,
 				9468E2442D2A36C500044FA9 /* PaintMixerBridge.mm */,
+				9468E2472D2AA6A500044FA9 /* PaintMixerWrapper.swift */,
 			);
 			path = PaintMixer;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			files = (
 				94CF1C6A2D2A0659008C9070 /* ContentView.swift in Sources */,
 				94CF1C682D2A0659008C9070 /* DropperApp.swift in Sources */,
+				9468E2482D2AA6A500044FA9 /* PaintMixerWrapper.swift in Sources */,
 				9468E2432D2A35BC00044FA9 /* PaintMixer.cpp in Sources */,
 				9468E2452D2A36C500044FA9 /* PaintMixerBridge.mm in Sources */,
 			);
