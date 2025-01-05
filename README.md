@@ -1,6 +1,7 @@
 <h1 align="center">Dropper- Real-World Photoshop Eyedropper Tool</h1>
 
 Dropper is an iOS app that helps artists match real-world colors with oil paint mixing ratios.
+
 Using your device's camera or photos from your library, you can select any color and get the corresponding oil paint mixture needed to recreate it.
 
 - SwiftUI frontend
@@ -23,4 +24,5 @@ Using your device's camera or photos from your library, you can select any color
 ## Acknowledgements
 
 Special thanks to [Mixbox](https://github.com/scrtwpns/mixbox) for providing the bases for color mixing algorithms used in this project.
+
 And to [Zsolt M. Kovacs-Vajna](https://zsolt-kovacs.unibs.it/home) for his decade of research in color mixing algorithms.
