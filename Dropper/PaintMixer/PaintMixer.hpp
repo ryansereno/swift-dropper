@@ -29,13 +29,11 @@ class PaintMixer {
 public:
     PaintMixer();
     
-    // Convert RGB color to mixing ratios
     std::vector<MixingRatio> rgbToPaintMix(uint8_t r, uint8_t g, uint8_t b) const;
     
 private:
     std::vector<PaintColor> basePaints;
     
-    // Helper methods
     float calculateColorDistance(uint8_t r1, uint8_t g1, uint8_t b1,
                                uint8_t r2, uint8_t g2, uint8_t b2) const;
     std::vector<MixingRatio> findNearestPaintMix(uint8_t r, uint8_t g, uint8_t b) const;

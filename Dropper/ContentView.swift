@@ -26,7 +26,6 @@ struct ContentView: View {
                 }
             }
             .toolbar {
-                // Show menu only when an image is selected
                 if selectedImage != nil {
                     Menu {
                         Button(role: .destructive) {
@@ -75,13 +74,11 @@ struct ZoomableImageView: View {
         VStack {
             GeometryReader { geometry in
                 ZStack {
-                    // Center the image, maintain aspect ratio
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .scaleEffect(scale)
-                        // Gesture to pick color
                         .gesture(
                             DragGesture(minimumDistance: 0)
                                 .onChanged { value in
@@ -93,14 +90,12 @@ struct ZoomableImageView: View {
                                     isColorPickerActive = false
                                 }
                         )
-                        // Double tap to zoom
                         .onTapGesture(count: 2) {
                             withAnimation {
                                 scale = scale > 1 ? 1 : 2
                             }
                         }
                     
-                    // Show color bubble if active
                     if isColorPickerActive {
                         ColorBubble(color: currentColor)
                             .position(touchLocation)
@@ -109,7 +104,6 @@ struct ZoomableImageView: View {
                 }
             }
             
-            // Display paint mixing ratios
             VStack(alignment: .leading, spacing: 8) {
                 if !currentMix.isEmpty {
                     Text("Paint Mixing Ratios:")
@@ -133,7 +127,6 @@ struct ZoomableImageView: View {
     }
     
     private func updateColor(at point: CGPoint, in geometry: GeometryProxy) {
-        // The displayed image's size (preserving aspect ratio)
         let displayedWidth = geometry.size.width
         let nativeAspectRatio = image.size.height / image.size.width
         let displayedHeight = displayedWidth * nativeAspectRatio
@@ -155,7 +148,6 @@ struct ZoomableImageView: View {
     }
 }
 
-// UIImage extension for pixel color
 extension UIImage {
     func pixelColor(at point: CGPoint) -> UIColor? {
         guard let cgImage = self.cgImage,
@@ -167,7 +159,6 @@ extension UIImage {
         let scale = self.scale
         let pixelPoint = CGPoint(x: point.x * scale, y: point.y * scale)
         
-        // ensure the point is in the valid range
         guard pixelPoint.x >= 0, pixelPoint.x < CGFloat(cgImage.width),
               pixelPoint.y >= 0, pixelPoint.y < CGFloat(cgImage.height) else { return nil }
         
@@ -182,7 +173,6 @@ extension UIImage {
     }
 }
 
-// ImagePicker for selecting images
 struct ImagePicker: UIViewControllerRepresentable {
     @Binding var selectedImage: UIImage?
     @Environment(\.presentationMode) var presentationMode

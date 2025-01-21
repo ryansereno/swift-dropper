@@ -1,9 +1,8 @@
 #include "PaintMixer.hpp"
 #include <cmath>
-#include <algorithm>
+// #include <algorithm>
 
 PaintMixer::PaintMixer() {
-    // Initialize with the five standard oil paint colors
     basePaints = {
         PaintColor("Titanium White", 255, 255, 255),
         PaintColor("Cadmium Red", 227, 0, 34),
@@ -24,24 +23,20 @@ float PaintMixer::calculateColorDistance(uint8_t r1, uint8_t g1, uint8_t b1,
 std::vector<MixingRatio> PaintMixer::findNearestPaintMix(uint8_t r, uint8_t g, uint8_t b) const {
     std::vector<std::pair<float, const PaintColor*>> distances;
     
-    // Calculate distances to all base paints
     for (const auto& paint : basePaints) {
         float distance = calculateColorDistance(r, g, b, paint.r, paint.g, paint.b);
         distances.push_back({distance, &paint});
     }
     
-    // Calculate inverse distance weights
     float totalWeight = 0.0f;
     std::vector<float> weights;
     
     for (const auto& [distance, paint] : distances) {
-        // Add small constant to avoid division by zero
         float weight = 1.0f / (distance + 0.1f);
         weights.push_back(weight);
         totalWeight += weight;
     }
     
-    // Create normalized ratios for all paints
     std::vector<MixingRatio> mix;
     for (size_t i = 0; i < basePaints.size(); i++) {
         float ratio = weights[i] / totalWeight;

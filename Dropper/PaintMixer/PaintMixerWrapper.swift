@@ -3,13 +3,11 @@
 import Foundation
 import UIKit
 
-// Make PaintMix struct public
 public struct PaintMix {
     let paintName: String
     let ratio: Float
 }
 
-// Make PaintMixerWrapper public
 public class PaintMixerWrapper {
     private let bridge: PaintMixerBridge
     
@@ -31,7 +29,6 @@ public class PaintMixerWrapper {
             b: UInt8(b * 255)
         )
         
-        // Handle optional array
         guard let mixResults = results else {
             return []
         }
